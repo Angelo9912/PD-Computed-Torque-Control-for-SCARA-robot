@@ -1,1 +1,1 @@
-# PD-Computed-Torque-Control-for-SCARA-robot
+# PD, Computed Torque and Adaptive Computed Torque Control for SCARA robot
