@@ -16,7 +16,9 @@ Punto della situazione attuale:
        --> Nel blocco del controllore, definire Kd
        --> Calcolare il regressore
        --> in teoria basterebbe quello per farlo partire
-       --> dinamica aggiornata come computed torque, magari provare a lavorare nello spazio operativo come nel PD
+       --> dinamica aggiornata come computed torque, magari
+           provare a lavorare nello spazio operativo come 
+           nel PD
 
        
 NB: nella cartella è presente un file computed torque adaptive, quello è da buttare ma ora non mi ricordo come si fa e anche se me lo ricordassi non ho voglia perchè sta cazzo di materia mi sta prosciugando l'anima
