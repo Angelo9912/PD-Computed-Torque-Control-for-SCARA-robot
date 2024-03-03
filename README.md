@@ -21,6 +21,7 @@ How to use:
     (choose 1 for PD, 2 for Computed Torque, 3 for Adaptive Backstepping)
 3) run "animazioni.m" to see the animated results
 
+TO DO: Delete computed torque adaptive from repository because is not working
 # Controllability and Observability of BlueRov2
 
 Is also presented a study for the observability and the controllability 
