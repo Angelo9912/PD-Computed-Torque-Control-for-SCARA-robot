@@ -6,6 +6,9 @@ robot.Gravity = [0;0;-9.81];
 % figure("Name","Plot SCARA 3D")
 % set(gca, 'ZLim',[0 0.5])
 % show(robot)
+obj = VideoWriter("robot_animation.avi");
+open(obj);
+
 q1 = out.q1;
 q2 = out.q2;
 q3 = out.q3;
@@ -34,7 +37,8 @@ l2 = 0.25;
 % j3 = plot3(0,l1+l2,l1,"Marker","o","MarkerSize",6,"Color","black")
 % j4 = plot3(0,l1+l2,l1/2,"Marker","+","MarkerSize",6,"Color","black")
 % curve = animatedline('LineWidth',2)
-figure("Name", "Animation Plot")
+frames = cell(length(x),1)
+fig1 = figure("Name", "Animation Plot");
 for i = 1:length(x)
     base = [0,0,0]';
     j1 = [0,0,l1]';
@@ -67,9 +71,13 @@ for i = 1:length(x)
     hold off
 
     drawnow;
+    F = getframe(fig1);
+    writeVideo(obj,F);
+
     pause(dt_animation)
 end
-
+obj.close();
+disp("Animation Recorded Successfully")
 %% Torques Plot
 
 figure("Name","Joint Position Error Plot")
