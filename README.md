@@ -2,9 +2,9 @@
 
 Project realized for the "Robot Control" course. 
 We implemented 3 kinds of Control:
--- PD control
--- Computed Torque control
--- Adaptive Backstepping
+--> PD control
+--> Computed Torque control
+--> Adaptive Backstepping
 
 The manipulator chosen is the SCARA robot, with 4DOF: 3 revolute joints
 and 1 prismatic joint. 
