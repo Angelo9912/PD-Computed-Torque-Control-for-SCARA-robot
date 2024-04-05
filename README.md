@@ -9,6 +9,8 @@ We implemented 3 kinds of Control:
 The manipulator chosen is the SCARA robot, with 4DOF: 3 revolute joints
 and 1 prismatic joint. 
 
+![robot_animation_AB](https://github.com/Angelo9912/PD-computed-torque-and-Adaptiva-Backstepping-for-SCARA-robot/assets/75857178/fcb6710b-5f63-49b5-a491-e1a95e72189a)
+
 How to use: 
 1) run "Inizializzazione_tavole.mlx" script
 2) it will displayed on the MATLAB console to choose the controller you want
