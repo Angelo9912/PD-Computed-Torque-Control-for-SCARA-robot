@@ -6,7 +6,13 @@ robot.Gravity = [0;0;-9.81];
 % figure("Name","Plot SCARA 3D")
 % set(gca, 'ZLim',[0 0.5])
 % show(robot)
-obj = VideoWriter("robot_animation.avi");
+if controller == 1
+    obj = VideoWriter("robot_animation_PD.avi");
+elseif controller == 2
+    obj = VideoWriter("robot_animation_CT.avi");
+elseif controller == 3 
+    obj = VideoWriter("robot_animation_AB.avi");
+end
 open(obj);
 
 q1 = out.q1;
@@ -37,7 +43,7 @@ l2 = 0.25;
 % j3 = plot3(0,l1+l2,l1,"Marker","o","MarkerSize",6,"Color","black")
 % j4 = plot3(0,l1+l2,l1/2,"Marker","+","MarkerSize",6,"Color","black")
 % curve = animatedline('LineWidth',2)
-frames = cell(length(x),1)
+frames = cell(length(x),1);
 fig1 = figure("Name", "Animation Plot");
 for i = 1:length(x)
     base = [0,0,0]';
@@ -64,7 +70,13 @@ for i = 1:length(x)
     xlim([-0.5,+0.5])
     ylim([-0.5,+0.5])
     zlim([-0.03,+0.5])
-    title("Robot Animation")
+    if controller == 1
+        title("Robot Animation PD Controller")
+    elseif controller == 2
+        title("Robot Animation Computed Torque Controller")
+    elseif controller == 3 
+        title("Robot Animation Adaptive Backstepping Controller")
+    end
     xlabel("x [m]")
     ylabel("y [m]")
     zlabel("z [m]")
@@ -80,28 +92,34 @@ obj.close();
 disp("Animation Recorded Successfully")
 %% Torques Plot
 
-figure("Name","Joint Position Error Plot")
+figure("Name","Torques Plot")
 
 t = tiledlayout(2,2);
-title(t,"Torques")
+    if controller == 1
+        title(t,"Torques PD Controller")
+    elseif controller == 2
+        title(t,"Torques Computed Torque Controller")
+    elseif controller == 3 
+        title(t,"Torques Adaptive Backstepping Controller")
+    end
 time = 0:dt_animation:times_way(end);
 
 nexttile
 plot(time,squeeze(tau1))
 xlabel("Time [s]")
-ylabel("tau 1 [N]")
+ylabel("tau 1 [Nm]")
 title("tau 1")
 
 nexttile
 plot(time,squeeze(tau2))
 xlabel("Time [s]")
-ylabel("tau 2 [N]")
+ylabel("tau 2 [Nm]")
 title("tau 2")
 
 nexttile
 plot(time,squeeze(tau3))
 xlabel("Time [s]")
-ylabel("tau 3 [N]")
+ylabel("tau 3 [Nm]")
 title("tau 3")
 
 nexttile
@@ -119,7 +137,7 @@ if controller == 1
     figure("Name","Position Error Plot")
     
     t = tiledlayout(2,2);
-    title(t,"Position Error")
+    title(t,"Position Error PD Controller")
     time = 0:dt_animation:times_way(end);
     
     nexttile
@@ -151,7 +169,12 @@ else
     figure("Name","Joint Position Error Plot")
     
     t = tiledlayout(2,2);
-    title(t,"Joint Position Error")
+    if controller == 2
+        title(t, "Joint Position Error Computed Torque Controller")
+    elseif controller == 3 
+        title(t,"Joint Position Error Backstepping Controller")
+    end
+
     time = 0:dt_animation:times_way(end);
     
     nexttile
@@ -186,10 +209,15 @@ else
     error_q3_dot = out.q3_error_dot;
     error_q4_dot = out.q4_error_dot;
     
-    figure("Name","Joint Position Error Plot")
+    figure("Name","Joint Velocity Error Plot")
     
     t = tiledlayout(2,2);
-    title(t,"Joint Velocity Error")
+    if controller == 2
+        title(t, "Joint Velocity Error Computed Torque Controller")
+    elseif controller == 3 
+        title(t,"Joint Velocity Error Backstepping Controller")
+    end
+    
     time = 0:dt_animation:times_way(end);
     
     nexttile
